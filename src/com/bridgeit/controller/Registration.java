@@ -36,13 +36,21 @@ public class Registration extends HttpServlet {
 		
 		int i=statement.executeUpdate();
 		if(i>0){
-			writer.println("Registration Successfull");
+		
+	
+			request.setAttribute("details", "Registration Successfull");
+			RequestDispatcher requst=request.getRequestDispatcher("index.jsp");
+			requst.include(request, response);
 		}else{
-			writer.println("Registration Unsuccessfull");
+		
+			request.setAttribute("details", "User Already Exist With This Name..");
+			
+			RequestDispatcher requst=request.getRequestDispatcher("index.jsp");
+			requst.include(request, response);
 			
 		}
 	}catch(Exception e){
-		
+		System.out.println(e);
 	}
 	
 	
