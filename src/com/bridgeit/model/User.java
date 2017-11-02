@@ -1,12 +1,12 @@
 package com.bridgeit.model;
 
 public class User {
-	private int number;
+	private long number;
 	private String userName,password,email;
-	public int getNumber() {
+	public long getNumber() {
 		return number;
 	}
-	public void setNumber(int number) {
+	public void setNumber(long number) {
 		this.number = number;
 	}
 	public String getUserName() {

@@ -33,7 +33,7 @@
   <div class="container">
 
           <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-6 col-sm-offset-3">
 
               <div class="form-box">
                 <div class="form-top">
@@ -46,23 +46,28 @@
                   </div>
                   </div>
                   <div class="form-bottom">
-                <form role="form" action="Registration" method="get" class="registration-form">
+                <form role="form" action="Registration" method="post" class="registration-form">
                   <div class="form-group">
-                    <label class="sr-only" >Username</label>
-                      <input type="text" name="userName" placeholder="Username..."class=" form-control" >
+                      <input id="name" type="text" name="userName" placeholder="Username..."class=" form-control" required>
+                       <span class="name" style="color:#19b9e7"></span>
                     </div>
                     <div class="form-group">
-                      <label class="sr-only" >Email</label>
                       <input type="text" name="email" placeholder="Email..." class=" form-control" >
                     </div>
                     <div class="form-group">
-                      <label class="sr-only" >Password</label>
-                      <input type="password" name="password" placeholder="Password..."class="form-control" >
+                      <input id="password" type="password" name="password" placeholder="Password..."class="form-control" required >
+                      <span class="password" style="color:#19b9e7"></span>
+                      
+                    </div>
+                   
+                   <div class="form-group">
+                      <input id="confirm" type="password" name="password" placeholder="Confirm Password..."class="form-control" required>
+                      <span class="confirm" style="color:#19b9e7"></span>
                     </div>
                    
                     <div class="form-group">
-                      <label class="sr-only" >Mobile Number</label>
-                      <input type="text" name="number" placeholder="Mobile Number" class=" form-control" >
+                      <input id="number" type="text" name="number" placeholder="Mobile Number" class=" form-control"  required>
+                      <span class="number" style="color:#19b9e7"></span>
                               </div>
                     <button type="submit" class="btn">Sign me up!</button>
                 </form>

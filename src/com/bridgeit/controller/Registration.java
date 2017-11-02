@@ -23,7 +23,7 @@ public class Registration extends HttpServlet {
 	user.setUserName(request.getParameter("userName"));
 	user.setEmail(request.getParameter("email"));
 	user.setPassword(request.getParameter("password"));
-	int number=Integer.parseInt(request.getParameter("number"));
+	long number=Integer.parseInt(request.getParameter("number"));
 	user.setNumber(number);
 	try{
 		Connection connection=dbConnection.getConnection();
@@ -32,7 +32,7 @@ public class Registration extends HttpServlet {
 		statement.setString(1, user.getUserName());
 		statement.setString(2, user.getEmail());
 		statement.setString(3, user.getPassword());
-		statement.setInt(4, user.getNumber());
+		statement.setLong(4, user.getNumber());
 		
 		int i=statement.executeUpdate();
 		if(i>0){
