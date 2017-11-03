@@ -2,7 +2,7 @@
 jQuery(document).ready(function() {
 	
     
-    $.backstretch("assets/img/backgrounds/1.jpg");
+  //  $.backstretch("assets/img/backgrounds/1.jpg");
     
     /*
         Login form validation
@@ -93,18 +93,25 @@ jQuery(document).ready(function() {
     	   }
     	   }); 
     
-    $("#number").blur(function(){
-    	var number=$('#number').val();
-    	var pattern=/[0-9]{10,10}/;
-    	if(!(number.match(pattern))){
-    		$('#number').addClass('input-error');
-    		$('.number').text("* Please enter 10 digit number...");
-    		$('#number').val('');
-    		}else{
-    			$('.number').empty();
-    		}
-    });
-    
+       $("#number").blur(function(){
+       	var number=$('#number').val();
+       	var pattern=/[0-9]{10,10}/;
+       	if(!(number.match(pattern))){
+       		$('#number').addClass('input-error');
+       		$('.number').text("* Please enter 10 digit number...");
+       		$('#number').val('');
+       		}
+       	else if(number.length>10){
+       		$('#number').addClass('input-error');
+       		$('.number').text("* Please enter 10 digit number...");
+       		$('#number').val('');
+       		
+       	}
+       	else{
+       			$('.number').empty();
+       		}
+       });
+       
     
     
     

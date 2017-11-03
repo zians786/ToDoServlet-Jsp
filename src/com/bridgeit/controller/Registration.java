@@ -1,6 +1,7 @@
 package com.bridgeit.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.*;
 
@@ -14,46 +15,42 @@ import javax.servlet.http.HttpSession;
 
 import com.bridgeit.dao.dbConnection;
 import com.bridgeit.model.User;
+import com.bridgeit.dao.RegistrationDao;
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	User user=new User();
+	RegistrationDao register=new RegistrationDao();
 	PrintWriter writer=response.getWriter();
 	user.setUserName(request.getParameter("userName"));
 	user.setEmail(request.getParameter("email"));
 	user.setPassword(request.getParameter("password"));
-	long number=Integer.parseInt(request.getParameter("number"));
+	long number=Long.parseLong(request.getParameter("number"));
 	user.setNumber(number);
-	try{
-		Connection connection=dbConnection.getConnection();
-		PreparedStatement statement=connection.prepareStatement("insert into registration values(?,?,?,?)");
 
-		statement.setString(1, user.getUserName());
-		statement.setString(2, user.getEmail());
-		statement.setString(3, user.getPassword());
-		statement.setLong(4, user.getNumber());
-		
-		int i=statement.executeUpdate();
-		if(i>0){
+	if(register.emailValidate()) {
 		
 	
-			request.setAttribute("details", "Registration Successfull");
+	if(register.registrationValidate()){
+			request.setAttribute("details", "Registration Successfull...");
 			RequestDispatcher requst=request.getRequestDispatcher("index.jsp");
 			requst.include(request, response);
 		}else{
 		
-			request.setAttribute("details", "User Already Exist With This Name..");
+			request.setAttribute("details","Registration Failed...");
 			
 			RequestDispatcher requst=request.getRequestDispatcher("index.jsp");
 			requst.include(request, response);
 			
 		}
-	}catch(Exception e){
-		System.out.println(e);
+	
+	}else {
+		request.setAttribute("details", "User Already Exist With This email..");
+		
+		RequestDispatcher requst=request.getRequestDispatcher("index.jsp");
+		requst.include(request, response);
 	}
-	
-	
 	
 	}
 
