@@ -19,20 +19,21 @@ import com.bridgeit.dao.RegistrationDao;
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	User user=new User();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+User user=new User();
 	RegistrationDao register=new RegistrationDao();
-	PrintWriter writer=response.getWriter();
+
 	user.setUserName(request.getParameter("userName"));
 	user.setEmail(request.getParameter("email"));
 	user.setPassword(request.getParameter("password"));
 	long number=Long.parseLong(request.getParameter("number"));
 	user.setNumber(number);
 
-	if(register.emailValidate()) {
+	if(register.emailValidate(user)) {
 		
 	
-	if(register.registrationValidate()){
+	if(register.registrationValidate(user)){
 			request.setAttribute("details", "Registration Successfull...");
 			RequestDispatcher requst=request.getRequestDispatcher("index.jsp");
 			requst.include(request, response);
@@ -53,9 +54,9 @@ public class Registration extends HttpServlet {
 	}
 	
 	}
-
+/*
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+*/
 }

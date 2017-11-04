@@ -3,9 +3,13 @@ package com.bridgeit.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+
 public class dbConnection {
 	static Connection connection = null;
 
+	/**
+	 * @return Connection for database access
+	 */
 	public static Connection getConnection() {
 
 		try {

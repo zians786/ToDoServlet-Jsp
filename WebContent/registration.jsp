@@ -54,6 +54,7 @@
                     <div class="form-group">
                       <input id="email" type="text" name="email" placeholder="Email..." class=" form-control" >
                     <span class="email" style="color:#19b9e7"></span>
+                    <span class="emailAjax" style="color:#19b9e7"></span>
                     </div>
                     <div class="form-group">
                       <input id="password" type="password" name="password" placeholder="Password..."class="form-control" required >

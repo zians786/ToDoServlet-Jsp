@@ -10,6 +10,11 @@ import com.bridgeit.model.User;
 
 public class LoginDao {
 
+		/**
+		 * @param user
+		 * validate user by checking Username and Password
+		 * @return true if user exist,else false
+		 */
 		public static boolean validate(User user) {
 		boolean status=false;
 		try {

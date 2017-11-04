@@ -7,8 +7,38 @@ import java.sql.ResultSet;
 
 import com.bridgeit.model.User;
  public class RegistrationDao {
-		User user=new User();
-	public boolean registrationValidate() {
+	
+	 /**
+	 * @param user
+	 * Checking user already exist with given email_id
+	 * @return true if user not exist,else false
+	 */
+	public boolean emailValidate(User user) {
+			boolean status=true;
+			try {
+				Connection connection=dbConnection.getConnection();
+				PreparedStatement statement=connection.prepareStatement("select * from registration where email=?");
+				statement.setString(1, user.getEmail());		
+				ResultSet result=statement.executeQuery();
+				
+				if(result.next()) {
+					status=false;
+				}
+			}
+			catch(Exception e){
+				System.out.println(e);
+			}
+			return status;
+		}
+
+	 
+	 
+	/**
+	 * @param user
+	 * 
+	 * @return true if registration successful,else false
+	 */
+	public boolean registrationValidate(User user) {
 		
 
 		boolean status=false;
@@ -32,22 +62,4 @@ import com.bridgeit.model.User;
 		}
 		return status;
 	}
-	public boolean emailValidate() {
-		boolean status=false;
-		try {
-			Connection connection=dbConnection.getConnection();
-			PreparedStatement statement=connection.prepareStatement("select * from registration where email=?");
-			statement.setString(1, user.getEmail());
-			
-			ResultSet result=statement.executeQuery();
-			
-			if(result.next()) {
-				status=true;
-			}
-		}
-		catch(Exception e){
-			System.out.println(e);
-		}
-		return status;
 	}
-}

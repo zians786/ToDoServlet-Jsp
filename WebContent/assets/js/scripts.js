@@ -9,6 +9,28 @@ jQuery(document).ready(function() {
     */
     
     
+	$("#email").blur(function(){
+		$.ajax({
+			url : 'AjaxEmailValidation',
+			data : { 
+				email:$("#email").val()
+			},
+			success: function(responseText){
+				$('.emailAjax').text(responseText);
+			}
+			
+			
+			
+		});
+		
+		
+	});
+	
+	
+	
+	
+	
+	
     $("#name").blur(function(){
     	var name=$("#name").val();
     	var pattern=/^[a-zA-Z]{4,15}/;
@@ -88,9 +110,21 @@ jQuery(document).ready(function() {
     	   if(!(email.match(pattern))){
     		   $("#email").addClass('input-error');
        		 $(".email").text("* Please enter valid email...");
-    	   }else{
-    			$(".email").empty();
+    	   }else if(email.match(pattern)){
+    		   $("#email").addClass('input-error');
+    		   $(".email").empty();
+    		   $.ajax({
+    				url : 'AjaxEmailValidation',
+    				data : { 
+    					email:$("#email").val()
+    				},
+    				success: function(responseText){
+    					$('.emailAjax').text(responseText);
+    				}
+    			});
+    			
     	   }
+    	
     	   }); 
     
        $("#number").blur(function(){
