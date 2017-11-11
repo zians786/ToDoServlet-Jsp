@@ -15,14 +15,15 @@ import javax.servlet.http.HttpSession;
 
 import com.bridgeit.dao.dbConnection;
 import com.bridgeit.model.User;
+import com.bridgeit.service.ServiceImp;
 import com.bridgeit.dao.RegistrationDao;
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+ServiceImp service=new ServiceImp();
 User user=new User();
-	RegistrationDao register=new RegistrationDao();
+
 
 	user.setUserName(request.getParameter("userName"));
 	user.setEmail(request.getParameter("email"));
@@ -30,10 +31,10 @@ User user=new User();
 	long number=Long.parseLong(request.getParameter("number"));
 	user.setNumber(number);
 
-	if(register.emailValidate(user)) {
+	if(service.serviceEmailValidate(user)) {
 		
 	
-	if(register.registrationValidate(user)){
+	if(service.seviceRegistrationValidate(user)){
 			request.setAttribute("details", "Registration Successfull...");
 			RequestDispatcher requst=request.getRequestDispatcher("index.jsp");
 			requst.include(request, response);

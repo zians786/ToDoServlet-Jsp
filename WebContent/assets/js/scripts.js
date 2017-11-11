@@ -18,12 +18,7 @@ jQuery(document).ready(function() {
 			success: function(responseText){
 				$('.emailAjax').text(responseText);
 			}
-			
-			
-			
-		});
-		
-		
+		});	
 	});
 	
 	
@@ -129,7 +124,7 @@ jQuery(document).ready(function() {
     
        $("#number").blur(function(){
        	var number=$('#number').val();
-       	var pattern=/[0-9]{10,10}/;
+       	var pattern=/[0-9]{10}/;
        	if(!(number.match(pattern))){
        		$('#number').addClass('input-error');
        		$('.number').text("* Please enter 10 digit number...");

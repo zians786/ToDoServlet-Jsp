@@ -15,7 +15,7 @@ public class LoginDao {
 		 * validate user by checking Username and Password
 		 * @return true if user exist,else false
 		 */
-		public static boolean validate(User user) {
+		public boolean validate(User user) {
 		boolean status=false;
 		try {
 			Connection connection=dbConnection.getConnection();

@@ -8,14 +8,15 @@
 
 </head>
 <body>
-<%@page import="com.bridgeit.dao.*"%>
+<%@page import="com.bridgeit.service.*"%>
 <%@page import="com.bridgeit.model.*"%>
 
 <jsp:useBean id="object" class="com.bridgeit.model.User"/>
+<jsp:useBean id="service" class="com.bridgeit.service.ServiceImp"/>
 <jsp:setProperty property="*" name="object"/>
 <% 
 	
-	boolean status=LoginDao.validate(object);
+	boolean status=service.serviceLoginValidate(object);
 if(status){
 	out.println("Login Successful");
 	session=request.getSession();
